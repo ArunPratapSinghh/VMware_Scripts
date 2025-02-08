@@ -10,7 +10,14 @@ $Password = "VMwar1!!"
 #Connect to VI Server
 $Connect_vCenter =  Connect-VIServer -Server "$ServerName" -Port 443 -Username  $UserName -Password $Password
 
-$List of host
-$Hosts_List = Get-VMhost -Server "$ServerName" |Select Name, Powerstate
+#server_Name
+$Server_Name = Read-Host "Enter the server Name"
 
-$VM_List = Get-VM -Server $ServerName |select Name, PowerState
+#Snapshot_Details
+$Snapshot_Details = Get-Snapshot -Name $Server_Name
+
+Read-Enter "Details of Snapshot details mentioned below"
+$Snapshot_Details
+
+$Disconnect_Server = Disconnect-VIserver -Server "$ServerName"
+
