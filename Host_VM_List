@@ -4,11 +4,14 @@ Clear-host
 #vcenter name
 $vCenter_Name = "alp00***"
 
-#Connect to the vcenter
+#Connect to the vCenter
 $vCenter = Connect-VIserver -Server "$Vcenter_Name" -Port 443 -user administrator@vsphere.local -Password "VMware123!"
 
 #List of All host in the vCenter
-$Host_List = Get-VMhost -Server $vCenter_Name |select Name,Version,PowerState
+$Host_List = Get-VMhost -Server $vCenter_Name |select Name,Version,State
 
 #List of All VMS
-$VM_List = Get-VM -server $vCenter_Name |select Name,Version,PowerState
+$VM_List = Get-VM -server $vCenter_Name |select Name,PowerState
+
+$Logoff From vCenter
+$Logoff_ViServer = Disconnect-ViServer -Server $vCenter_Name -confirm:$false
