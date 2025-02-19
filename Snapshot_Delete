@@ -1,1 +1,17 @@
+#Command clear Before running the script
+Clear-host
 
+#vcenter name
+$vCenter_Name = "alp00***"
+
+#Connect to the vCenter
+$vCenter = Connect-VIserver -Server "$Vcenter_Name" -Port 443 -user administrator@vsphere.local -Password "VMware123!"
+
+#List of All VMS
+$VM_List = Get-VM -server $vCenter_Name |select Name,PowerState
+
+#Take Snapsot of VM
+$Snapshot_Delete = Get-Snapshot -VM $VM |Remove-Snapshot -confirm:$false
+
+$Logoff From vCenter
+$Logoff_ViServer = Disconnect-ViServer -Server $vCenter_Name -confirm:$false
