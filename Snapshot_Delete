@@ -12,6 +12,7 @@ $VM_List = Get-VM -server $vCenter_Name |select Name,PowerState
 
 #Take Snapsot of VM
 $Snapshot_Delete = Get-Snapshot -VM $VM |Remove-Snapshot -confirm:$false
+Write-Host "Snapshot has been deleted" -forgroundcolor Green
 
 $Logoff From vCenter
 $Logoff_ViServer = Disconnect-ViServer -Server $vCenter_Name -confirm:$false
