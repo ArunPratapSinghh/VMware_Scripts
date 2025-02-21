@@ -1,3 +1,3 @@
-#Connect Vi server
+#Connect Vi server########
 
 Connect-VIserver -Server $ServerName -Port 443 -UserName administrator@vpshere.local -password VMwar3!! 
