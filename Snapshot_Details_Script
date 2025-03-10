@@ -1,11 +1,11 @@
-
 #clear the command line
 Clear-Host
 
-#Details of vCenter
-$ServerName = ""
-$UserName = "Administrator@vsphere.local"
-$Password = "VMwar1!!"
+#Details of User,Password and vCenter
+$UserName = ""
+$Password = ""
+$vCenter_Name = ""
+
 
 #Connect to VI Server
 $Connect_vCenter =  Connect-VIServer -Server "$ServerName" -Port 443 -Username  $UserName -Password $Password
