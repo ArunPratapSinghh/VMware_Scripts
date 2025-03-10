@@ -18,7 +18,7 @@ foreach($VM in $Server_List)
     try{
 
             Get-Snapshot -VM $VM |Remove-Snapshot -Confirm:$false
-            Write-Host "Requested Snapshot has been Deleted of $VM" -ForegroundColor Cyan
+            Write-Host "Requested Snapshot has been Created of $VM" -ForegroundColor Cyan
 
         }
     catch{
