@@ -1,18 +1,33 @@
-#Command clear Before running the script
-Clear-host
+#####Create Snapshot #######
 
-#vcenter name
-$vCenter_Name = "alp00***"
+#Details of User,Password and vCenter
+$UserName = ""
+$Password = ""
+$vCenter_Name = ""
 
-#Connect to the vCenter
-$vCenter = Connect-VIserver -Server "$Vcenter_Name" -Port 443 -user administrator@vsphere.local -Password "VMware123!"
+#List of Server which required Snapshot
+$Server_List = Get-content -Path C:\temp\Snapshot_List.txt
 
-#List of All VMS
-$VM_List = Get-VM -server $vCenter_Name |select Name,PowerState
+#Connect vCenter
+Connect-VIServer -Server $vCenter_Name -Port 443 -User $UserName -Password $Password
 
-#Take Snapsot of VM
-$Snapshot_Delete = Get-Snapshot -VM $VM |Remove-Snapshot -confirm:$false
-Write-Host "Snapshot has been deleted" -forgroundcolor Green
+#Forloop for Creating Snapshot
+foreach($VM in $Server_List)
+{
+  #Using try-catch method to take the snaphsot
+    try{
 
-$Logoff From vCenter
-$Logoff_ViServer = Disconnect-ViServer -Server $vCenter_Name -confirm:$false
+            Get-Snapshot -VM $VM |Remove-Snapshot -Confirm:$false
+            Write-Host "Requested Snapshot has been Deleted of $VM" -ForegroundColor Cyan
+
+        }
+    catch{
+
+            Write-Host "Server is not hosted in the vCenter. Kindly check the server" -ForgroundColor Yellow
+        
+          }  
+}
+
+#logoff from vCenter
+Disconnect-VIServer -Server $vCenter_Name -Confirm:$false
+Write-Host "vCenter has logoff and Script has been completed to delete the Snapshot" -ForegroundColor Red
