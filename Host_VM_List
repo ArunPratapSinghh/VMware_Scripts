@@ -1,17 +1,31 @@
 #Command clear Before running the script###
 Clear-host
 
-#vcenter name
-$vCenter_Name = "alp00***"
+#Details of User,Password and vCenter
+$UserName = ""
+$Password = ""
+$vCenter_Name = ""
+#For only one host
+$Host_List = ""   
 
-#Connect to the vCenter
-$vCenter = Connect-VIserver -Server "$Vcenter_Name" -Port 443 -user administrator@vsphere.local -Password "VMware123!"
+#Information for multiple host 
+$Server_List = Get-content -Path C:\temp\Host_List_List.txt
 
-#List of All host in the vCenter
-$Host_List = Get-VMhost -Server $vCenter_Name |select Name,Version,State
+#Connect vCenter
+Connect-VIServer -Server $vCenter_Name -Port 443 -User $UserName -Password $Password
 
-#List of All VMS
-$VM_List = Get-VM -server $vCenter_Name |select Name,PowerState
+Foreach($Host in $Host_List)
+{
+      try{
+      #List of All host in the vCenter
+      Get-VMhost -VM $Host |select Name,Version,State, Powerstate
+  }catch{
 
+    Write-Host "Host $Host is not found in the vCenter $vCenter_Name" -ForgroundColor Yellow 
+
+}
+}
 $Logoff From vCenter
 $Logoff_ViServer = Disconnect-ViServer -Server $vCenter_Name -confirm:$false
+
+Write-Host "Script has been completed" -ForgroundColor Cyan
