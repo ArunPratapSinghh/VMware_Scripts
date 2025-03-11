@@ -4,6 +4,8 @@
 $UserName = ""
 $Password = ""
 $vCenter_Name = ""
+$Snapshot_Name = ""
+$Snapshot_Description = ""
 
 #List of Server which required Snapshot
 $Server_List = Get-content -Path C:\temp\Snapshot_List.txt
@@ -17,7 +19,7 @@ foreach($VM in $Server_List)
   #Using try-catch method to take the snaphsot
     try{
 
-            Get-Snapshot -VM $VM |Remove-Snapshot -Confirm:$false
+            New-Snapshot -VM $VM -Name $Snapshot_Name -Description $Snapshot_Description -memory -RunAsync -Confirm:$false
             Write-Host "Requested Snapshot has been Created of $VM" -ForegroundColor Cyan
 
         }
