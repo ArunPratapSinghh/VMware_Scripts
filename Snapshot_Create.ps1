@@ -1,4 +1,4 @@
-#####Create Snapshot #######
+#####Create Snapshot ##########
 
 #Details of User,Password and vCenter
 $UserName = ""
