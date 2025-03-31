@@ -1,4 +1,4 @@
-#Command Screen clear Before running the script#
+#Command Screen clear Before running the script####
 Clear-host
 
 Write-Host "Bulk VM Rename starting..." -forgroundcolor Green
