@@ -1,7 +1,7 @@
 #Command Screen clear Before running the script####
 Clear-host
 
-Write-Host "Bulk VM Rename starting..." -forgroundcolor Green
+#Write-Host "Bulk VM Rename starting..." -forgroundcolor Green
 
 #Details of User,Password and vCenter
 $UserName = ""
