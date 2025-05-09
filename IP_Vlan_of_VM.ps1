@@ -1,5 +1,5 @@
 
-#Command Screen clear Before running the script#
+#Command Screen clear Before running the script####
 Clear-host
 
 Write-Host "Bulk VM IP and VLAN details starting..." -forgroundcolor Green
