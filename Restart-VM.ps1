@@ -1,5 +1,5 @@
 
-#######Restart VM from the vcenter###########
+##########Restart VM from the vcenter#############
 
 ##Clear Command windows
 Clear-Host
