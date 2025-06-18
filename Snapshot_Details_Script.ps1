@@ -14,7 +14,7 @@ $Connect_vCenter =  Connect-VIServer -Server "$ServerName" -Port 443 -Username  
 $Server_Name = Read-Host "Enter the server Name"
 
 #Snapshot_Details
-$Snapshot_Details = Get-Snapshot -Name $Server_Name
+$Snapshot_Details = Get-Snapshot -Name $Server_Name |Select-object Name,Description |format-table -Autosize
 
 Read-Enter "Details of Snapshot details mentioned below"
 $Snapshot_Details
