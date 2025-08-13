@@ -1,4 +1,4 @@
-#######Command clear Before running the script##########
+#########Command clear Before running the script##########
 Clear-host
 
 #Details of User,Password and vCenter
